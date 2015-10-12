@@ -1,0 +1,17 @@
+{
+    "name": "smartapps-fr/yii-monolog",
+    "description": "Monolog Yii Extension",
+    "keywords": ["monolog", "yii", "log", "error", "exception", "debug", "monitoring"],
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/smartapps-fr/yii-monolog",
+    "authors": [
+        {
+            "name": "Damien Debin",
+            "email": "dd@smartapps.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "monolog/monolog": "~0.17.1"
+    }
+}
