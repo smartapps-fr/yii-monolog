@@ -12,6 +12,6 @@
     ],
     "require": {
         "php": ">=5.3",
-        "monolog/monolog": "~0.17.1"
+        "monolog/monolog": "~1.17.1"
     }
 }
