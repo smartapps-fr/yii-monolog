@@ -6,7 +6,7 @@ class MonologLogRoute extends CLogRoute
     
     public function init()
     {
-        if (Yii::app()->getComponent($this->$monologComponentName) === null) {
+        if (Yii::app()->getComponent($this->monologComponentName) === null) {
             throw new CException('Monolog component is not loaded.');
         }
         if (!class_exists('Monolog\Registry', false)) {
@@ -19,10 +19,10 @@ class MonologLogRoute extends CLogRoute
         foreach ($logs as $log) {
             // Exclude records by the exceptions handler. MonologErrorHandler takes care of them.
             if (strncmp($log[2], 'exception', 9) !== 0) {
-                Monolog\Registry::application()->log(
+                Monolog\Registry::main()->log(
                     self::levelToString($log[1]),
                     $log[0],
-                    array('message' => $log[0], 'level' => $log[1], 'category' => $log[2], 'timestamp' => $log[3]*1000/*msec*/, 'environment' => Yii::app()->getComponent($this->$monologComponentName)->environment)
+                    array('message' => $log[0], 'level' => $log[1], 'category' => $log[2], 'timestamp' => $log[3]*1000/*msec*/, 'environment' => Yii::app()->getComponent($this->monologComponentName)->environment)
                 );
             }
         }

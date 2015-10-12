@@ -8,7 +8,7 @@ class MonologErrorHandler extends CErrorHandler
     {
         // skip 404
         if (!($e instanceof CHttpException && $e->statusCode == 404)) {
-            Monolog\Registry::application()->addError(
+            Monolog\Registry::main()->addError(
                 sprintf('Uncaught Exception %s: "%s" at %s line %s', get_class($e), $e->getMessage(), $e->getFile(), $e->getLine()),
                 array('exception' => $e)
             );
@@ -20,9 +20,9 @@ class MonologErrorHandler extends CErrorHandler
 
     protected function handleError($e)
     {
-        Monolog\Registry::application()->addError(
+        Monolog\Registry::main()->addError(
             self::codeToString($e->code).': '.$e->message,
-            array('code' => $e->code, 'message' => $e->message, 'file' => $e->file, 'line' => $e->line, 'params' => $e->params, 'environment' => Yii::app()->getComponent($this->$monologComponentName)->environment)
+            array('code' => $e->code, 'message' => $e->message, 'file' => $e->file, 'line' => $e->line, 'params' => $e->params, 'environment' => Yii::app()->getComponent($this->monologComponentName)->environment)
         );
 
         parent::handleError($e);
