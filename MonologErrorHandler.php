@@ -9,7 +9,7 @@ class MonologErrorHandler extends CErrorHandler
         //if (!($e instanceof CHttpException && $e->statusCode == 404)) { // skip 404
             Monolog\Registry::main()->addError(
                 sprintf('Uncaught Exception %s: "%s" at %s line %s', get_class($e), $e->getMessage(), $e->getFile(), $e->getLine()),
-                array('exception' => $e)
+                array('exception' => (string)$e)
             );
         //}
 
